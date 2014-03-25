@@ -1,0 +1,86 @@
+<!-- <h2><%= l(:label_home) %></h2> -->
+
+<div class="row">
+
+  <div id="welcome-left" class="col-md-3">    
+  
+  <h3><%=l(:text_quick_menu)%></h3>
+
+    <ul class="welcome-menu">
+      <li><span><%=l(:label_quick_users)%></span><a class="<%=l(:label_quick_users)%>" href="/users"><i class="fa fa-users"></i></a></li>
+      <li><span><%=l(:label_quick_projects)%></span><a class="<%=l(:label_quick_projects)%>" href="/projects"><i class="fa fa-sitemap"></i></a></li>
+      <li><span><%=l(:label_quick_issues)%></span><a class="<%=l(:label_quick_issues)%>" href="/issues"><i class="fa fa-ticket"></i></a></li>
+      <li><span><%=l(:label_quick_stats)%></span><a class="<%=l(:label_quick_stats)%>" href="/stats"><i class="fa fa-signal"></i></a></li>
+      <li><span><%=l(:label_quick_wiky)%></span><a class="<%=l(:label_quick_wiky)%>" href="/wiky"><i class="fa fa-book"></i></a></li>
+      <li><span><%=l(:label_quick_support)%></span><a class="<%=l(:label_quick_support)%>" href="/support"><i class="fa fa-cogs"></i></a></li>
+    </ul>
+
+  </div>
+
+  <div id="welcome-right" class="col-md-9">
+
+    <% if @news.any? %>
+      <div class="news box">
+        <h3><%=l(:label_news_latest)%></h3>
+        <%= render :partial => 'news/news', :collection => @news %>
+        <%= link_to l(:label_news_view_all), :controller => 'news' %>
+      </div>
+    <% end %>
+
+    <% if @projects.any? %>
+      <div class="projects box">
+        <h3><%=l(:label_project_latest)%></h3>
+        <ul>
+        <% for project in @projects %>
+          <% @project = project %>
+          <li>
+          <%= link_to_project project %> (<%= format_time(project.created_on) %>)
+          <%= textilizable project.short_description, :project => project %>
+          </li>
+        <% end %>
+        <% @project = nil %>
+        </ul>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>
+
+<!-- <div class="splitcontentleft">
+  <%= textilizable Setting.welcome_text %>
+  <% if @news.any? %>
+  <div class="news box">
+  <h3><%=l(:label_news_latest)%></h3>
+    <%= render :partial => 'news/news', :collection => @news %>
+    <%= link_to l(:label_news_view_all), :controller => 'news' %>
+  </div>
+  <% end %>
+  <%= call_hook(:view_welcome_index_left, :projects => @projects) %>
+</div> -->
+
+<!-- <div class="splitcontentright">
+    <% if @projects.any? %>
+  <div class="projects box">
+  <h3><%=l(:label_project_latest)%></h3>
+    <ul>
+    <% for project in @projects %>
+      <% @project = project %>
+      <li>
+      <%= link_to_project project %> (<%= format_time(project.created_on) %>)
+      <%= textilizable project.short_description, :project => project %>
+      </li>
+    <% end %>
+    <% @project = nil %>
+    </ul>
+  </div>
+  <% end %>
+    <%= call_hook(:view_welcome_index_right, :projects => @projects) %>
+</div> -->
+
+<% content_for :header_tags do %>
+<%= auto_discovery_link_tag(:atom, {:controller => 'news', :action => 'index', :key => User.current.rss_key, :format => 'atom'},
+                                   :title => "#{Setting.app_title}: #{l(:label_news_latest)}") %>
+<%= auto_discovery_link_tag(:atom, {:controller => 'activities', :action => 'index', :key => User.current.rss_key, :format => 'atom'},
+                                   :title => "#{Setting.app_title}: #{l(:label_activity)}") %>
+<% end %>
