@@ -1,3 +1,5 @@
+
+
 <!-- <h2><%= l(:label_home) %></h2> -->
 
 <div class="row">
@@ -7,12 +9,12 @@
   <h3><%=l(:text_quick_menu)%></h3>
 
     <ul class="welcome-menu">
-      <li><span><%=l(:label_quick_users)%></span><a class="<%=l(:label_quick_users)%>" href="/users"><i class="fa fa-users"></i></a></li>
-      <li><span><%=l(:label_quick_projects)%></span><a class="<%=l(:label_quick_projects)%>" href="/projects"><i class="fa fa-sitemap"></i></a></li>
-      <li><span><%=l(:label_quick_issues)%></span><a class="<%=l(:label_quick_issues)%>" href="/issues"><i class="fa fa-ticket"></i></a></li>
-      <li><span><%=l(:label_quick_stats)%></span><a class="<%=l(:label_quick_stats)%>" href="/stats"><i class="fa fa-signal"></i></a></li>
-      <li><span><%=l(:label_quick_wiky)%></span><a class="<%=l(:label_quick_wiky)%>" href="/wiky"><i class="fa fa-book"></i></a></li>
-      <li><span><%=l(:label_quick_support)%></span><a class="<%=l(:label_quick_support)%>" href="/support"><i class="fa fa-cogs"></i></a></li>
+      <li><span><%=l(:label_quick_users)%></span><a class="<%=l(:label_quick_users)%> hasTooltip" href="/users" data-toggle="tooltip" data-placement="right" title="<%=l(:tip_quick_users)%>"><i class="fa fa-users"></i></a></li>
+      <li><span><%=l(:label_quick_projects)%></span><a class="<%=l(:label_quick_projects)%> hasTooltip" href="/projects" data-toggle="tooltip" data-placement="right" title="<%=l(:tip_quick_projects)%>"><i class="fa fa-sitemap"></i></a></li>
+      <li><span><%=l(:label_quick_issues)%></span><a class="<%=l(:label_quick_issues)%> hasTooltip" href="/issues" data-toggle="tooltip" data-placement="right" title="<%=l(:tip_quick_issues)%>"><i class="fa fa-ticket"></i></a></li>
+      <li><span><%=l(:label_quick_stats)%></span><a class="<%=l(:label_quick_stats)%> hasTooltip" href="/stats" data-toggle="tooltip" data-placement="right" title="<%=l(:tip_quick_stats)%>"><i class="fa fa-signal"></i></a></li>
+      <li><span><%=l(:label_quick_wiky)%></span><a class="<%=l(:label_quick_wiky)%> hasTooltip" href="/wiky" data-toggle="tooltip" data-placement="right" title="<%=l(:tip_quick_wiky)%>"><i class="fa fa-book"></i></a></li>
+      <li><span><%=l(:label_quick_support)%></span><a class="<%=l(:label_quick_support)%> hasTooltip" href="/support" data-toggle="tooltip" data-placement="right" title="<%=l(:tip_quick_support)%>"><i class="fa fa-cogs"></i></a></li>
     </ul>
 
   </div>
@@ -78,9 +80,16 @@
     <%= call_hook(:view_welcome_index_right, :projects => @projects) %>
 </div> -->
 
+<!-- Bootstrap Tooltip -->
+
+<script> $('.hasTooltip').tooltip() </script>
+
 <% content_for :header_tags do %>
 <%= auto_discovery_link_tag(:atom, {:controller => 'news', :action => 'index', :key => User.current.rss_key, :format => 'atom'},
                                    :title => "#{Setting.app_title}: #{l(:label_news_latest)}") %>
 <%= auto_discovery_link_tag(:atom, {:controller => 'activities', :action => 'index', :key => User.current.rss_key, :format => 'atom'},
                                    :title => "#{Setting.app_title}: #{l(:label_activity)}") %>
 <% end %>
+
+
+

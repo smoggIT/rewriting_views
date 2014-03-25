@@ -4,8 +4,16 @@ en:
   
   text_quick_menu: Move your first steps, choosing from quick menu.
   label_quick_users: Users
+  tip_quick_users: Display list of all System Users
   label_quick_issues: Issues
+  tip_quick_issues: Display list of all Issues
   label_quick_stats: Statistics
+  tip_quick_stats: Statistics related to Users and Projects
   label_quick_projects: Projects
+  tip_quick_projects: List of all current Projects
   label_quick_wiky: Wiky
+  tip_quick_wiky: Take a look to Integrated Wiky
   label_quick_support: Support
+  tip_quick_support: Send an e-mail for Tecnhical Support 
+
+
