@@ -1,3 +1,11 @@
 # English strings go here for Rails i18n
 en:
   # my_label: "My label"
+  
+  text_quick_menu: Move your first steps, choosing from quick menu.
+  label_quick_users: Users
+  label_quick_issues: Issues
+  label_quick_stats: Statistics
+  label_quick_projects: Projects
+  label_quick_wiky: Wiky
+  label_quick_support: Support
