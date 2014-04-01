@@ -1,7 +1,8 @@
 # English strings go here for Rails i18n
 en:
   # my_label: "My label"
-  
+
+  # quick menu
   text_quick_menu: Move your first steps, choosing from quick menu.
   label_quick_users: Users
   tip_quick_users: Display list of all System Users
@@ -16,4 +17,7 @@ en:
   label_quick_support: Support
   tip_quick_support: Send an e-mail for Tecnhical Support 
 
+# lost password
+
+  desc_password_lost: Insert your e-mail to reset your password. 
 

@@ -4,9 +4,11 @@
 
 <div class="row">
 
-  <div id="welcome-left" class="col-md-3">    
+  <div id="welcome-left" class="col-md-2">    
   
   <h3><%=l(:text_quick_menu)%></h3>
+
+  <!-- Welcome Quick Menu -->
 
     <ul class="welcome-menu">
       <li><span><%=l(:label_quick_users)%></span><a class="<%=l(:label_quick_users)%> hasTooltip" href="/users" data-toggle="tooltip" data-placement="right" title="<%=l(:tip_quick_users)%>"><i class="fa fa-users"></i></a></li>
@@ -19,29 +21,33 @@
 
   </div>
 
-  <div id="welcome-right" class="col-md-9">
-
-    <% if @news.any? %>
-      <div class="news box">
-        <h3><%=l(:label_news_latest)%></h3>
-        <%= render :partial => 'news/news', :collection => @news %>
-        <%= link_to l(:label_news_view_all), :controller => 'news' %>
-      </div>
-    <% end %>
+  <div id="welcome-right" class="col-md-10">
 
     <% if @projects.any? %>
       <div class="projects box">
-        <h3><%=l(:label_project_latest)%></h3>
-        <ul>
+      <i class="fa fa-caret-left projects-arrow"></i>
+        <h3><%=l(:label_project_latest)%><i class="fa fa-clock-o"></i></h3>
+        <ul class="projects-list">
         <% for project in @projects %>
           <% @project = project %>
-          <li>
-          <%= link_to_project project %> (<%= format_time(project.created_on) %>)
-          <%= textilizable project.short_description, :project => project %>
+          <li class="project">
+          <h4 class="project-title"><%= link_to_project project %> <span class="project_date"><i class="fa fa-calendar"></i> <%= format_time(project.created_on) %></span></h4>
+          <div class="project-content"><%= textilizable project.short_description, :project => project %></div>
           </li>
         <% end %>
         <% @project = nil %>
         </ul>
+      </div>
+    <% end %>
+
+     <% if @news.any? %>
+      <div class="news box">
+        <i class="fa fa-caret-left projects-arrow"></i>
+        <h3><%=l(:label_news_latest)%><i class="fa fa-bars"></i></h3>
+
+        <%= render :partial => 'news/news', :collection => @news %>
+
+        <i class="fa fa-caret-square-o-right"></i> <%= link_to l(:label_news_view_all), :controller => 'news' %>
       </div>
     <% end %>
 

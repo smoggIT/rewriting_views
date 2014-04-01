@@ -1,0 +1,23 @@
+# Estensione del file di lingua italiana
+it:
+
+# quick menu
+
+  text_quick_menu: Per iniziare, seleziona una voce dal menu. #Move your first steps, choosing from quick menu.
+  label_quick_users: Utenti #Users
+  tip_quick_users: Visualizza la lista di tutti gli utenti #Display list of all System Users
+  label_quick_issues: Segnalazioni #Issues
+  tip_quick_issues: Visualizza la lista di tutte le segnalazioni #Display list of all Issues
+  label_quick_stats: Statistiche #Statistics
+  tip_quick_stats: Statistiche per utente e progetto #Statistics related to Users and Projects
+  label_quick_projects: Progetti #Projects
+  tip_quick_projects: Lista di tutti i progetti correnti#List of all current Projects
+  label_quick_wiky: Wiky
+  tip_quick_wiky: Dai un'occhiata alla Wiky integrata#Take a look to Integrated Wiky
+  label_quick_support: Supporto #Support
+  tip_quick_support: Richiedi supporto tecnico via e-mail #Send an e-mail for Tecnhical Support 
+
+# lost password
+
+  desc_password_lost: Inserisci la tua e-mail per ricevere una nuova password. #Insert your e-mail to reset your password. 
+

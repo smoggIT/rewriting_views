@@ -33,13 +33,13 @@
 
         <div class="row">
 
-            <div id="user-menu" class="col-md-8">
+            <div id="user-menu" class="col-md-8 col-sm-6">
             <%= render_menu :top_menu if User.current.logged? || !Setting.login_required? -%>
             </div>
 
-            <%= content_tag('div', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}".html_safe, :id => 'loggedas', :class => 'col-md-2') if User.current.logged? %>
+            <%= content_tag('div', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}".html_safe, :id => 'loggedas', :class => 'col-md-2 col-sm-6 col-xs-6') if User.current.logged? %>
 
-            <div id="account" class="col-md-2">
+            <div id="account" class="col-md-2 col-sm-6 col-xs-6">
                 <%= render_menu :account_menu -%>
             </div>
 
@@ -54,9 +54,11 @@
 
     <div id="header" class="container-fluid">
 
+        <!-- Logo & Search -->
+
         <div class="row">
 
-             <div id="logo" class="col-md-4">
+             <div id="logo" class="col-md-4 col-sm-4">
                 <a class="svg" href="/"> 
                     <object data="<%= Redmine::Utils.relative_url_root %>/plugin_assets/rewriting_views/images/logo.svg" type="image/svg+xml">
                         <img alt="Elettric80 S.p.a" src="<%= Redmine::Utils.relative_url_root %>/plugin_assets/rewriting_views/images/logo.png" />
@@ -65,8 +67,14 @@
                 </a>
             </div>
 
+            <div id="responsive" class="col-md-8 col-sm-8">
+                    <object data="<%= Redmine::Utils.relative_url_root %>/plugin_assets/rewriting_views/images/responsive.svg" type="image/svg+xml">
+                        <img alt="Elettric80 S.p.a" src="<%= Redmine::Utils.relative_url_root %>/plugin_assets/rewriting_views/images/responsive.png" />
+                    </object>
+            </div>
+
             <% if User.current.logged? || !Setting.login_required? %>
-            <div id="quick-search" class="col-md-8">
+            <div id="quick-search" class="col-md-8 col-sm-8">
                 <%= form_tag({:controller => 'search', :action => 'index', :id => @project}, :method => :get ) do %>
                 <%= hidden_field_tag(controller.default_search_scope, 1, :id => nil) if controller.default_search_scope %>
                 <label for='q'>
@@ -81,15 +89,20 @@
 
         </div>
 
-        <div class="row">
+        <!-- Nav Bar & Tab Menu -->
+
+        <div id="navbar" class="row">
 
         <div id="page-title" class="col-md-3"> 
             <h1 ><%= page_header_title %></h1>
         </div>
 
         <% if display_main_menu?(@project) %>
-            <div id="main-menu" class="col-md-9">
+            <div id="main-menu" class="col-md-9 col-sm-12">
+                <a href="#" id="resp-menu" class="" style="display:none;"><i class="fa fa-align-justify"></i>Menu</a>
+                <div id="main-menu-content">
                 <%= render_main_menu(@project) %>
+                </div>
             </div>
         <% end %>
 
@@ -98,27 +111,37 @@
     </div>
 </div>
 
+<script>
+    // On Click Responsive Menu Function
+    jQuery("#resp-menu").click(function () {
+    jQuery("#main-menu-content").toggle();
+    }); 
+</script>
 
     <!-- Main -->
 
-    <div id="main-wrapper" class="<% if !User.current.logged? %>backgrounded-login<% end %>
-    
-   <'%= def_field(welcome) %> ">
+    <div id="main-wrapper">
 
        <div class="container-fluid"> 
 
-            <div id="main" class="row <%= sidebar_content? ? '' : 'nosidebar' %>">
+            <div id="main" class="row<%= sidebar_content? ? '' : ' nosidebar' %>">
 
-                <div id="content" class="col-md-<%= sidebar_content? ? '8' : '12' %>">
+                <!-- Content-Sidebar original order changed -->
+
+                <div id="sidebar" class="col-md-2">
+
+                    <a href="#" id="resp-options" class="" style="display:none;"><i class="fa fa-cog"></i>Options</a>
+                    <div id="sidebar-content">
+                        <%= yield :sidebar %>
+                        <%= view_layouts_base_sidebar_hook_response %>
+                    </div>
+                </div>
+
+                <div id="content" class="col-md-<%= sidebar_content? ? '10' : '12' %>">
                     <%= render_flash_messages %>
                     <%= yield %>
                     <%= call_hook :view_layouts_base_content %>
                     <div style="clear:both;"></div>
-                </div>
-
-                <div id="sidebar" class="col-md-4">
-                    <%= yield :sidebar %>
-                    <%= view_layouts_base_sidebar_hook_response %>
                 </div>
 
             </div>
@@ -127,7 +150,12 @@
 
     </div>
 
-
+<script>
+    // On Click Responsive Menu Function
+    jQuery("#resp-options").click(function () {
+    jQuery("#sidebar-content").toggle();
+    }); 
+</script>
 
     <div id="ajax-indicator" style="display:none;"><span><%= l(:label_loading) %></span></div>
     <div id="ajax-modal" style="display:none;"></div>
