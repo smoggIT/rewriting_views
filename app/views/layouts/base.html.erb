@@ -33,14 +33,16 @@
 
         <div class="row">
 
-            <div id="user-menu" class="col-md-8 col-sm-6">
+            <div id="user-menu" class="col-md-8">
             <%= render_menu :top_menu if User.current.logged? || !Setting.login_required? -%>
             </div>
 
-            <%= content_tag('div', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}".html_safe, :id => 'loggedas', :class => 'col-md-2 col-sm-6 col-xs-6') if User.current.logged? %>
+             <div id="account" class="col-md-4 col-sm-12">
 
-            <div id="account" class="col-md-2 col-sm-6 col-xs-6">
-                <%= render_menu :account_menu -%>
+            <%= render_menu :account_menu -%>
+
+            <%= content_tag('div', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}".html_safe, :id => 'loggedas') if User.current.logged? %>
+                
             </div>
 
         </div>  
