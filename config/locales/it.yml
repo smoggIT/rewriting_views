@@ -1,6 +1,11 @@
 # Estensione del file di lingua italiana
 it:
 
+# login
+claim_header_text: Tanti piccoli problemi
+claim_header_subtext: Un'unica grande soluzione.
+claim_text: Inserisci le tue credenziali ed entra nel
+
 # quick menu
 
   text_quick_menu: Per iniziare, seleziona una voce dal menu. #Move your first steps, choosing from quick menu.

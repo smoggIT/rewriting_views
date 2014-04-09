@@ -2,6 +2,11 @@
 en:
   # my_label: "My label"
 
+  # login
+  claim_header_text: Many small issues
+  claim_header_subtext: One Big Solution.
+  claim_text: Enter your credentials and login into
+
   # quick menu
   text_quick_menu: Move your first steps, choosing from quick menu.
   label_quick_users: Users
